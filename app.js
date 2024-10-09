@@ -24,6 +24,9 @@ app.get("/campgrounds", async (request, response) => {
   const campgrounds = await Campground.find({});
   response.render("campgrounds/index", { campgrounds });
 });
+app.get("/campgrounds/new", (request, response) => {
+  response.render("campgrounds/new");
+});
 
 app.get("/campgrounds/:id", async (request, response) => {
   const campground = await Campground.findById(request.params.id);
