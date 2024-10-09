@@ -32,7 +32,9 @@ app.get("/campgrounds/new", (request, response) => {
 });
 
 app.post("/campgrounds", async (request, response) => {
-  response.send(request.body);
+  const campground = new Campground(request.body.campground);
+  await campground.save();
+  response.redirect(`/campgrounds/${campground._id}`);
 });
 
 app.get("/campgrounds/:id", async (request, response) => {
