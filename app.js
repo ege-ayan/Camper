@@ -42,6 +42,11 @@ app.get("/campgrounds/:id", async (request, response) => {
   response.render("campgrounds/show", { campground });
 });
 
+app.get("/campgrounds/:id/edit", async (request, response) => {
+  const campground = await Campground.findById(request.params.id);
+  response.render("campgrounds/edit", { campground });
+});
+
 app.listen(3000, () => {
   console.log("Express Server running on port 3000");
 });
