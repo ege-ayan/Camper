@@ -50,7 +50,11 @@ app.get("/campgrounds/:id/edit", async (request, response) => {
 });
 
 app.put("/campgrounds/:id", async (request, response) => {
-  response.send("It");
+  const { id } = request.params;
+  const campground = await Campground.findByIdAndUpdate(id, {
+    ...request.body.campground,
+  });
+  response.redirect(`/campgrounds/${campground._id}`);
 });
 
 app.listen(3000, () => {
